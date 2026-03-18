@@ -54,4 +54,29 @@ public class Product {
 	@OrderColumn(name = "sort_order")
 	@Column(name = "tag_name", nullable = false, length = 80)
 	private List<String> tags = new ArrayList<>();
+
+	protected Product() {
+	}
+
+	public Product(
+		String slug,
+		String title,
+		String category,
+		BigDecimal price,
+		BigDecimal rating,
+		String summary,
+		String accent,
+		String imageCode,
+		List<String> tags
+	) {
+		this.slug = slug;
+		this.title = title;
+		this.category = category;
+		this.price = price;
+		this.rating = rating;
+		this.summary = summary;
+		this.accent = accent;
+		this.imageCode = imageCode;
+		this.tags = new ArrayList<>(tags);
+	}
 }
