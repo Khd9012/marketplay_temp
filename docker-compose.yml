@@ -1,0 +1,65 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: marketplay-postgres
+    environment:
+      POSTGRES_DB: marketplay
+      POSTGRES_USER: marketplay
+      POSTGRES_PASSWORD: marketplay
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marketplay -d marketplay"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: marketplay-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./marketplay_api
+    container_name: marketplay-api
+    environment:
+      SERVER_PORT: 8080
+      DB_URL: jdbc:postgresql://postgres:5432/marketplay
+      DB_USERNAME: marketplay
+      DB_PASSWORD: marketplay
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  fo:
+    build:
+      context: ./marketplay_fo
+    container_name: marketplay-fo
+    environment:
+      PORT: 9191
+      MARKETPLAY_API_URL: http://api:8080/api
+    ports:
+      - "9191:9191"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  redis_data:

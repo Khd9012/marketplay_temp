@@ -1,18 +1,39 @@
 # marketplay_temp
 
-MarketPlay workspace for multi-app development.
+MarketPlay monorepo template for storefront, API, and mobile expansion.
 
 ## Apps
 
-- `marketplay_fo`: Next.js storefront template
-- `marketplay_api`: backend API workspace placeholder
-- `marketplay_mo`: mobile/front app workspace placeholder
+- `marketplay_fo`: Next.js storefront
+- `marketplay_api`: Spring Boot 4.0 API
+- `marketplay_mo`: mobile workspace placeholder
 
-## Current Status
+## Stack
 
-`marketplay_fo` is the active storefront template and already builds successfully.
+- Frontend: Next.js 16
+- API: Spring Boot 4.0.3 / Java 21
+- DB: PostgreSQL
+- Cache: Redis
+- Infra: Docker Compose
 
-## Run
+## Quick Start
+
+### Run with Docker
+
+```bash
+docker compose up --build
+```
+
+- Storefront: `http://localhost:9191`
+- API: `http://localhost:8080/api/products`
+- Actuator health: `http://localhost:8080/actuator/health`
+
+### Run apps separately
+
+```bash
+cd marketplay_api
+./gradlew bootRun
+```
 
 ```bash
 cd marketplay_fo

@@ -1,9 +1,28 @@
 # marketplay_api
 
-Backend API workspace placeholder.
+Spring Boot 4.0.3 / Java 21 API for the MarketPlay template.
 
-Recommended next steps:
+## Included
 
-1. Choose runtime and framework
-2. Add auth, product, cart, wishlist modules
-3. Connect `marketplay_fo/lib/api`
+- Product list/detail API
+- Wishlist toggle API
+- Cart API
+- PostgreSQL + Flyway
+- Redis dependency for future cache/session usage
+- Actuator health endpoints
+
+## Endpoints
+
+- `GET /api/products`
+- `GET /api/products/{slug}`
+- `GET /api/wishlist`
+- `POST /api/wishlist/toggle`
+- `GET /api/cart`
+- `POST /api/cart`
+- `DELETE /api/cart/{slug}`
+
+## Run
+
+```bash
+./gradlew bootRun
+```

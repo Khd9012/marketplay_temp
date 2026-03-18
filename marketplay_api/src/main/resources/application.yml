@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: marketplay_api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/marketplay}
+    username: ${DB_USERNAME:marketplay}
+    password: ${DB_PASSWORD:marketplay}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  flyway:
+    enabled: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+server:
+  port: ${SERVER_PORT:8080}
