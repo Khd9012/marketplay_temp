@@ -34,14 +34,14 @@ services:
       context: ./marketplay_api
     container_name: marketplay-api
     environment:
-      SERVER_PORT: 8080
+      SERVER_PORT: 19092
       DB_URL: jdbc:postgresql://postgres:5432/marketplay
       DB_USERNAME: marketplay
       DB_PASSWORD: marketplay
       REDIS_HOST: redis
       REDIS_PORT: 6379
     ports:
-      - "8080:8080"
+      - "19092:19092"
     depends_on:
       postgres:
         condition: service_healthy
@@ -54,7 +54,7 @@ services:
     container_name: marketplay-fo
     environment:
       PORT: 9191
-      MARKETPLAY_API_URL: http://api:8080/api
+      MARKETPLAY_API_URL: http://api:19092/api
     ports:
       - "9191:9191"
     depends_on:

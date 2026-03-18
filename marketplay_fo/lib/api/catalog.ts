@@ -7,7 +7,7 @@ import {
 } from "@/data/catalog";
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-const API_URL = process.env.MARKETPLAY_API_URL || "http://localhost:8080/api";
+const API_URL = process.env.MARKETPLAY_API_URL || "http://localhost:19092/api";
 
 type ApiEnvelope<T> = {
   code: string;

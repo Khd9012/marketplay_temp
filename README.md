@@ -25,8 +25,8 @@ docker compose up --build
 ```
 
 - Storefront: `http://localhost:9191`
-- API: `http://localhost:8080/api/products`
-- Actuator health: `http://localhost:8080/actuator/health`
+- API: `http://localhost:19092/api/products`
+- Actuator health: `http://localhost:19092/actuator/health`
 
 ### Run apps separately
 
